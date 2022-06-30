@@ -210,8 +210,7 @@ var dealCardsToPlayersAndComputer = function () {
 };
 
 /** Calculate a player's winnings from winning a bet
- * @param {object} player A given player's profile
- * @returns {number} The amount won by a given player
+
  */
 var calBetWinnings = function (player) {
   var winRate = player.bet;
@@ -236,7 +235,6 @@ var calBetLosses = function (player) {
 };
 
 /** Create a string that cues the next person to play. If there are no other players, cue user that computer will be playing next
- * @returns {string} Directions about what happens next
  */
 var craftInstructionsForNextSteps = function () {
   // If the last player is playing, it's the end of the current game. Press refresh to start again
@@ -403,8 +401,7 @@ var getEliminatedPlayers = function () {
   return playerProfiles.filter(criterionToEliminate);
 };
 
-/** Identify which players are still in the game  i.e. they have >1 points
- * @returns {array} An array of playerProfiles still in the game
+/* Identify which players are still in the game  i.e. they have >1 points
  */
 var getRemainingPlayers = function () {
   var criterionToRemain = function (player) {
@@ -413,9 +410,7 @@ var getRemainingPlayers = function () {
   return playerProfiles.filter(criterionToRemain);
 };
 
-/** Display which players were eliminated
- * @param {array} eliminatedPlayersArray
- * @returns {string} A list of which players were eliminated this round
+/* Display which players were eliminated
  */
 var displayEliminatedPlayers = function (eliminatedPlayersArray) {
   // Set a preamble that is of datatype String
@@ -481,15 +476,12 @@ var main = function (input) {
       currPlayerIndex = 0;
 
       // output a message that welcomes the latest player and cues first player to enter a bet
-      return (
-        "Welcome, " +
-        playerProfiles[playerProfiles.length - 1].name +
-        ". <br><br>" +
-        playerProfiles[0].name +
-        ", you have " +
-        playerProfiles[0].points +
-        " points.<br> Please enter a bet."
-      );
+      return `Welcome, ${
+        playerProfiles[playerProfiles.length - 1].name
+      }. <br><br> 
+        ${playerProfiles[0].name} , you have ${
+        playerProfiles[0].points
+      } points.<br> Please enter a bet.`;
     }
 
     // Else not all players have submitted their names. Output a msg that acknowldeges the player's name submission, and cues the next player to enter their name
@@ -535,10 +527,8 @@ var main = function (input) {
        , you'll play first. Click submit to deal cards and see your cards`;
     }
 
-    // Else, some players have not submitted their bet. Acknowledge the current player's bet and invite the next player to enter their bet.
     // Assign current player's index to prevPlayrIndex
     var prevPlayerIndex = currPlayerIndex;
-    // Increase currentPlayerIndex so that it points at the next player in playerProfiles
     currPlayerIndex += 1;
     return ` ${playerProfiles[prevPlayerIndex].name}, you've chosen to bet ${playerProfiles[prevPlayerIndex].bet} points. ${playerProfiles[currPlayerIndex].name}, please enter your bet.`;
   }
@@ -564,7 +554,7 @@ var main = function (input) {
       ${getDefaultOutput()} 
       <br><br>==>  ${craftInstructionsForNextSteps()}`;
 
-      // End curr player's turn: Cue next player to play, else cue computer's turn if currPlayer is the last player
+      // End curr player's turn:next player to play, else computer's turn if currPlayer is the last player
       endCurrPlayerTurn();
 
       return myOutputValue;
